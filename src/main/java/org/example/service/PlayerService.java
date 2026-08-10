@@ -10,11 +10,12 @@ public class PlayerService {
     private final PlayerDao playerDao = new PlayerDaoImpl();
     public Player getOrCreatePlayer(String name){
         Optional<Player>  player = playerDao.findByName(name);
-        if ( player.isPresent()){
+        if ( player.isPresent()) {
             return player.get();
+        }
             Player newPlayer = new Player(name);
             playerDao.save(newPlayer);
             return newPlayer;
-        }
+
     }
 }
