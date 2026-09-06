@@ -1,6 +1,7 @@
 package org.example.dto;
 
-public class CreateMatchRequest {
-    String firstPlayerName;
-    String secondPlayerName;
+public record CreateMatchRequest(
+        String firstPlayerName,
+        String secondPlayerName
+) {
 }

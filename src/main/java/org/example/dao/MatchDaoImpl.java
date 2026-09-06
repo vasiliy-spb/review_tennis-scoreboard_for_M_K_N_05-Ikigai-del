@@ -43,17 +43,18 @@ public class MatchDaoImpl implements MatchDao {
         int offset = (page - 1) * size;
         try (Session session = HibernateUtil.getSession()) {
             return session.createQuery(
-                    "from Match " +
-                            "where player1.name = :name " +
-                            "or player2.name = :name " +
-                            "order by id desc",
-                    Match.class)
-                    .setParameter("name" , playerName)
+                            "from Match " +
+                                    "where player1.name = :name " +
+                                    "or player2.name = :name " +
+                                    "order by id desc",
+                            Match.class)
+                    .setParameter("name", playerName)
                     .setFirstResult(offset)
                     .setMaxResults(size)
                     .getResultList();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DataBaseOperationException("Failed to get matches by player name", e);
         }
     }
+}

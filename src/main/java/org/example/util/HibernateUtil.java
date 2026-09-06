@@ -1,13 +1,13 @@
 package org.example.util;
-
 import org.example.entity.Match;
 import org.example.entity.Player;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import javax.security.auth.login.Configuration;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-    private static HibernateUtil() {
+
+    private HibernateUtil() {
     }
 
     private static final SessionFactory SESSION_FACTORY;
@@ -18,10 +18,9 @@ public class HibernateUtil {
                 .addAnnotatedClass(Player.class)
                 .addAnnotatedClass(Match.class)
                 .buildSessionFactory();
-
     }
-    public static final SessionFactory getSession{
+
+    public static Session getSession() {
         return SESSION_FACTORY.openSession();
     }
 }
-

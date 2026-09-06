@@ -5,10 +5,7 @@ import org.example.dto.CreateMatchResponse;
 import org.example.service.MatchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -16,7 +13,10 @@ import java.util.UUID;
 @RequestMapping("/matches")
 public class MatchController {
     private final MatchService matchService = new MatchService();
-
+    @GetMapping("/")
+    public String test() {
+        return "Spring MVC работает";
+    }
     @PostMapping
     public ResponseEntity<CreateMatchResponse> createMatch(
             @RequestBody CreateMatchRequest request) {
