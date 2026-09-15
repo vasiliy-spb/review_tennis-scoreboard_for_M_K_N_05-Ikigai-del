@@ -29,7 +29,7 @@ public class MatchDaoImpl implements MatchDao {
         int offset = (page - 1) * size;
         try (Session session = HibernateUtil.getSession()) {
             return session.createQuery(
-                            "from Match order by id desc", Match.class)
+                            "from Match  where winner is not null order by id desc", Match.class)
                     .setFirstResult(offset)
                     .setMaxResults(size)
                     .getResultList();
@@ -44,8 +44,8 @@ public class MatchDaoImpl implements MatchDao {
         try (Session session = HibernateUtil.getSession()) {
             return session.createQuery(
                             "from Match " +
-                                    "where player1.name = :name " +
-                                    "or player2.name = :name " +
+                                    "where winner is not null " +
+                                    "and (player1.name = :name or player2.name = :name) " +
                                     "order by id desc",
                             Match.class)
                     .setParameter("name", playerName)
@@ -55,6 +55,23 @@ public class MatchDaoImpl implements MatchDao {
 
         } catch (Exception e) {
             throw new DataBaseOperationException("Failed to get matches by player name", e);
+        }
+    }
+
+    @Override
+    public long countMatches(String playerName) {
+        try (Session session = HibernateUtil.getSession()) {
+            String hql = "Select count(m) from Match m where m.winner is not null";
+            if (playerName != null && !playerName.isBlank()) {
+                hql += " and (m.player1.name = :name or m.player2.name = :name)";
+            }
+            var query = session.createQuery(hql, Long.class);
+            if (playerName != null && !playerName.isBlank()) {
+                query.setParameter("name", playerName);
+            }
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataBaseOperationException("Failed to count match", e);
         }
     }
 }

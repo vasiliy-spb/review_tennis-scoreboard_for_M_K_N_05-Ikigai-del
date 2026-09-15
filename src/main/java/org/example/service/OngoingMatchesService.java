@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.entity.Match;
 import org.example.model.MatchScore;
 
 import java.util.Map;
@@ -19,15 +18,15 @@ public class OngoingMatchesService {
         return INSTANCE;
     }
 
-    public void createNewMatch(UUID uuid, Match matchScore) {
+    public void createNewMatch(UUID uuid, MatchScore matchScore) {   // ← тип поменяли на MatchScore
         ongoingMatches.put(uuid, matchScore);
     }
 
-    public Match getCurrentMatch(UUID uuid) {
-       return ongoingMatches.get(uuid);
+    public MatchScore getCurrentMatch(UUID uuid) {   // ← и здесь тоже
+        return ongoingMatches.get(uuid);
     }
 
     public void deleteMatch(UUID uuid) {
-         ongoingMatches.remove(uuid);
+        ongoingMatches.remove(uuid);
     }
 }

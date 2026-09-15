@@ -30,11 +30,11 @@ private Integer tieBreakPoints = null;
         this.sets = sets;
     }
 
-    public int getTieBreakPoints() {
+    public Integer getTieBreakPoints() {
         return tieBreakPoints;
     }
 
-    public void setTieBreakPoints(int tieBreakPoints) {
+    public void setTieBreakPoints(Integer tieBreakPoints) {
         this.tieBreakPoints = tieBreakPoints;
     }
 }

@@ -43,7 +43,7 @@ public class MatchScore {
         this.winnerName = winner;
     }
 
-    private void addPoint(boolean firstPlayerScored) {
+    public void addPoint(boolean firstPlayerScored) {
         if (winnerName != null) {
             throw new IllegalStateException("Матч уже завершен");
         }
@@ -54,7 +54,7 @@ public class MatchScore {
         }
     }
 
-    private void addPointgame(boolean firstPlayerScored) {
+    public void addPointgame(boolean firstPlayerScored) {
         PlayerScore scorer = firstPlayerScored ? firstPlayerScore : secondPlayerScore;
         PlayerScore aponent = firstPlayerScored ? secondPlayerScore : firstPlayerScore;
 
@@ -64,7 +64,6 @@ public class MatchScore {
             winGame(scorer, aponent);
         }
     }
-
     private void winGame(PlayerScore winner, PlayerScore loser) {
         winner.setPoints(0);
         loser.setPoints(0);
@@ -82,7 +81,7 @@ public class MatchScore {
     private void addTieBreakPoint(boolean firstPlayerScored) {
         PlayerScore scorer = firstPlayerScored ? firstPlayerScore : secondPlayerScore;
         PlayerScore opponent = firstPlayerScored ? secondPlayerScore : firstPlayerScore;
-
+        scorer.setTieBreakPoints(scorer.getTieBreakPoints() + 1);
         if (scorer.getTieBreakPoints() >= 7 && scorer.getTieBreakPoints() - opponent.getTieBreakPoints() >= 2) {
             scorer.setGames(scorer.getGames() + 1);
             tieBreake = false;
@@ -92,10 +91,11 @@ public class MatchScore {
 
         }
     }
-    private void winSet(PlayerScore winner, PlayerScore loser){
+
+    private void winSet(PlayerScore winner, PlayerScore loser) {
         winner.setGames(0);
         loser.setGames(0);
-        winner.setSets(winner.getGames() + 1);
+        winner.setSets(winner.getSets() + 1);
 
         if (winner.getSets() >= 2) {
             Player winnerPlayer = (winner == firstPlayerScore) ? match.getPlayer1() : match.getPlayer2();
