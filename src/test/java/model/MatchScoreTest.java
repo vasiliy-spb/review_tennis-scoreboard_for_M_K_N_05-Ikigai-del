@@ -22,7 +22,7 @@ public class MatchScoreTest {
    void  addPoint_increseByPoint{
         matchScore.addPoint(true);
 
-        assertEquals
+
     }
 
 }
