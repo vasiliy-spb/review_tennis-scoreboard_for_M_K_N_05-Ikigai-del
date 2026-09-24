@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Файл конфигурации удобнее читать, когда зависимости в нём расположены в порядке важности для проекта -->
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

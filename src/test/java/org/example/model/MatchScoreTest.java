@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MatchScoreTest {
 
+    // Можно добавить тестовые сценарии для проверки хода всего матча, а также для крайних случаев и негативных кейсов.
+        // Например, для попытки начислить очко в уже завершённом гейме.
+
     private MatchScore matchScore;
 
     @BeforeEach

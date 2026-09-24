@@ -3,6 +3,7 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
+<!-- Как и из кода, комментарии из файлов конфигурации стоит удалять перед коммитом. -->
 <hibernate-configuration>
     <session-factory>
 
@@ -15,6 +16,7 @@
             jdbc:postgresql://localhost:5432/tableboard
         </property>
 
+        <!-- ! Данные об имени пользователя и пароле не должны попадать в github -->
         <property name="hibernate.connection.username">
             ikigai
         </property>
